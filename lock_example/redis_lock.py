@@ -2,17 +2,16 @@ import os
 from datetime import datetime
 from multiprocessing import Pool
 from redlock import Redlock
-from seckilling import seckilling, init_redis
+from lock_example.seckilling import seckilling, init_redis
 
 rlock = Redlock([{"host": "10.40.110.90", "port": 6379, "db": 1}])
 
 
 def run_with_redis_lock(name):
     while True:
-        lock = rlock.lock("pants", 60000)
-        # 暂停下来在redis里能找到pants这个key
+        lock = rlock.lock("sms_1", 60000)
+        # 暂停下来在redis里能找到sms_1这个key
         pid = os.getpid()
-        print(pid, 'pants', datetime.now())
         seckilling()
         rlock.unlock(lock)
         return

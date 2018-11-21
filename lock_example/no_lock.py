@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+__author__ = 'Wang Xueyang'
+__email__ = 'wxy_snowy@163.com'
 
 from datetime import datetime
 from multiprocessing import Pool
-from seckilling import seckilling, init_redis
+from lock_example.seckilling import seckilling, init_redis
 
 
 def run_without_lock(name):
